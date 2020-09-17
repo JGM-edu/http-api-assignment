@@ -8,6 +8,59 @@
   <script type="text/babel">
 
   </script>
+  <!-- <script src="./client.js"></script> -->
+  <script>
+    window.onload = () => {
+      document.querySelector("#send").onclick = (e) =>
+      {
+        // const fillContent = (idText, messageText) => {
+
+        // };
+        let xhr = new XMLHttpRequest();
+        window.xhr = xhr;
+        xhr.open("GET", document.querySelector("#page").value);
+        xhr.setRequestHeader("Accept", document.querySelector("#type").value);
+        xhr.onload = (ev) =>
+        {
+          if (document.querySelector("#type").value == "application/json")
+          {
+            let obj = JSON.parse(xhr.response);
+            document.querySelector("#content").innerHTML = "";
+            if (obj.id)
+              document.querySelector("#content").innerHTML += `<h1>${obj.id}</h1>`;
+            document.querySelector("#content").innerHTML += `<p>Message: ${obj.message}</p>`;
+          }
+          else {
+            document.querySelector("#content").innerHTML = xhr.response;
+            let placeholder = document.querySelector("#content").innerHTML;
+            let rID, rMESSAGE;
+            for (let i = 0; i < document.querySelector("#content").firstChild.children.length; i++) {
+              const element = document.querySelector("#content").firstChild.children[i];
+              if (element.outerHTML.includes("<id>")){
+                rID = element.innerHTML;
+              }
+              if (element.outerHTML.includes("<message>")){
+                rMESSAGE = element.innerHTML;
+              }
+            }
+            document.querySelector("#content").innerHTML = "";
+            if (rID) {
+              document.querySelector("#content").innerHTML += `<h1>${rID}</h1>`;
+            }
+            else {
+              document.querySelector("#content").innerHTML += `<h1>Success</h1>`;
+            }
+            if (rMESSAGE) {
+              document.querySelector("#content").innerHTML += `<p>Message: ${rMESSAGE}</p>`;
+            }
+            if (document.querySelector("#content").innerHTML == "")
+              document.querySelector("#content").innerHTML = xhr.response;
+          }
+        };
+        xhr.send();
+      };
+    };
+  </script>
 </head>
 <body>
   <section id="top">

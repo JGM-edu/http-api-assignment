@@ -1,0 +1,25 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+	"start": "node ./src/index.js",
+	"pretest": "eslint ./src --fix",
+	"test": "echo \"Tests complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JGM-edu/http-api-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JGM-edu/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/JGM-edu/http-api-assignment#readme",
+  "devDependencies": {
+    "eslint": "^7.9.0"
+  }
+}
